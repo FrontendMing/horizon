@@ -1,0 +1,104 @@
+{% schema %}
+{
+  "name": "Reviews & Tutorials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "default_tab",
+      "label": "Default Tab",
+      "options": [
+        { "value": "reviews", "label": "Reviews" },
+        { "value": "tutorials", "label": "Tutorials" }
+      ],
+      "default": "reviews"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews & Tutorials",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="container mx-auto max-w-[1600px] px-4 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Learn from Pro Reviews & Tutorials</h1>
+  <div class="flex space-x-4 mb-6">
+    <button class="tab px-4 py-2 rounded {% if section.settings.default_tab == 'reviews' %}bg-yellow-400 text-white{% else %}bg-white text-gray-600{% endif %}" data-tab="reviews">Reviews</button>
+    <button class="tab px-4 py-2 rounded {% if section.settings.default_tab == 'tutorials' %}bg-yellow-400 text-white{% else %}bg-white text-gray-600{% endif %}" data-tab="tutorials">How to Tutorials</button>
+  </div>
+  <div id="reviews" class="tab-content {% unless section.settings.default_tab == 'reviews' %}hidden{% endunless %}">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x200" alt="Review 1" class="w-full h-48 object-cover rounded">
+        <div class="mt-4">
+          <p class="text-gray-600">Six Eight Woodworks</p>
+          <p class="text-gray-800">If you're new to lasers, this is a 55W CO2 laser. It's super powerful and great to cut any color acrylic, thicker materials, and so much faster. Lots of other great bells and whistles plus super intuitive free software.</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x200" alt="Review 2" class="w-full h-48 object-cover rounded">
+        <div class="mt-4">
+          <p class="text-gray-600">Six Eight Woodworks</p>
+          <p class="text-gray-800">If you're new to lasers, this is a 55W CO2 laser. It's super powerful and great to cut any color acrylic, thicker materials, and so much faster. Lots of other great bells and whistles plus super intuitive free software.</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x200" alt="Review 3" class="w-full h-48 object-cover rounded">
+        <div class="mt-4">
+          <p class="text-gray-600">Six Eight Woodworks</p>
+          <p class="text-gray-800">If you're new to lasers, this is a 55W CO2 laser. It's super powerful and great to cut any color acrylic, thicker materials, and so much faster. Lots of other great bells and whistles plus super intuitive free software.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tutorials" class="tab-content {% unless section.settings.default_tab == 'tutorials' %}hidden{% endunless %}">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x200" alt="Tutorial 1" class="w-full h-48 object-cover rounded">
+        <div class="mt-4">
+          <p class="text-gray-600">Six Eight Woodworks</p>
+          <p class="text-gray-800">Step-by-step guide on using the 55W CO2 laser for beginners. Learn to cut various materials with ease.</p>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x200" alt="Tutorial 2" class="w-full h-48 object-cover rounded">
+        <div class="mt-4">
+          <p class="text-gray-600">Six Eight Woodworks</p>
+          <p class="text-gray-800">Advanced techniques for optimizing your 55W CO2 laser cuts and software settings.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('bg-yellow-400', 'text-white'));
+        contents.forEach(c => c.classList.add('hidden'));
+        
+        this.classList.add('bg-yellow-400', 'text-white');
+        document.getElementById(this.dataset.tab).classList.remove('hidden');
+      });
+    });
+  });
+</script>
+
+<style>
+  .tab-content {
+    display: block;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
